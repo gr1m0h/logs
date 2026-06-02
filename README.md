@@ -1,1 +1,1 @@
-# leetcode-logs
+# logs
