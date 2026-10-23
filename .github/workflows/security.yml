@@ -6,13 +6,8 @@ permissions:
   contents: read
 
 jobs:
-  # This repository contains standalone exercise snippets, not a Go module.
-  # Keep repository-wide scans; module builds cannot compile these snippets.
-  osv-scanner:
-    uses: gr1m0h/.github/.github/workflows/osv-scanner.yml@bfc0348f95a376b47e216b5136240e24d97dda8a
-    permissions:
-      contents: read
-      security-events: write
+  # These exercise snippets have no module or dependency manifest to scan.
+  # Retain secret, dependency-change, and workflow checks for the repository.
   gitleaks:
     uses: gr1m0h/.github/.github/workflows/gitleaks.yml@bfc0348f95a376b47e216b5136240e24d97dda8a
     permissions:
