@@ -1,0 +1,23 @@
+# <target-repo>/.github/workflows/security.yml
+name: security
+on:
+  pull_request:
+permissions:
+  contents: read
+
+jobs:
+  # These exercise snippets have no module or dependency manifest to scan.
+  # Retain secret, dependency-change, and workflow checks for the repository.
+  gitleaks:
+    uses: gr1m0h/.github/.github/workflows/gitleaks.yml@bfc0348f95a376b47e216b5136240e24d97dda8a
+    permissions:
+      contents: read
+      pull-requests: read
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    uses: gr1m0h/.github/.github/workflows/dependency-review.yml@bfc0348f95a376b47e216b5136240e24d97dda8a
+    permissions:
+      contents: read
+      pull-requests: read
+  actions-pin-lint:
+    uses: gr1m0h/.github/.github/workflows/actions-pin-lint.yml@bfc0348f95a376b47e216b5136240e24d97dda8a
